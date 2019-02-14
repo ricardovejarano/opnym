@@ -12,10 +12,4 @@ export class NavBarComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  goLogin() {
-    console.log('Funcion');
-    this.router.navigate(['/login']);
-  }
-
 }
