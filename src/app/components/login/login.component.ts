@@ -10,11 +10,17 @@ export class LoginComponent implements OnInit {
   myParams: object = {};
   width = 100;
   height = 100;
+  email = '';
+  password = '';
 
   constructor() { }
 
   ngOnInit() {
     this.initialiceParticles();
+  }
+
+  loginSubmit() {
+    console.log('INICIA SESIÓN');
   }
 
   initialiceParticles() {
