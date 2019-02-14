@@ -1,10 +1,24 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { HomeComponent } from './components/home/home.component';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  template: `
+  <app-nav-bar></app-nav-bar>
+  <router-outlet></router-outlet>
+  <app-footer></app-footer>
+  `,
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'opnym';
+  rootPage: any;
+
+  constructor(public router: Router) {
+    this.rootPage = HomeComponent;
+    this.router.navigate(['/home']);
+  }
+
+
 }
