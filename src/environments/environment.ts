@@ -3,8 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+   firebaseConfig:  {
+    apiKey: 'AIzaSyCfzlArUSWjzmc2H0hGS4mENbhtlunvUUk',
+    authDomain: 'hegi-f634b.firebaseapp.com',
+    databaseURL: 'https://hegi-f634b.firebaseio.com',
+    projectId: 'hegi-f634b',
+    storageBucket: 'hegi-f634b.appspot.com',
+    messagingSenderId: '794033922816'
+  }
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file

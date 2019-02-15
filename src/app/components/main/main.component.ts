@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Country } from 'src/app/models/country.model';
+declare var jQuery: any;
 
 @Component({
   selector: 'app-main',
@@ -7,9 +9,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
+  country: Country = new Country();
+
   constructor() { }
 
   ngOnInit() {
+    this.initModal();
+  }
+
+  createCountrySubmit() {
+    console.log('Se crea Pais');
+  }
+
+  initModal() {
+    jQuery(document).ready(function () {
+      jQuery('.modal').modal();
+    });
+  }
+
+  closeModal() {
+    jQuery(document).ready(function () {
+      jQuery('.modal').modal().close();
+    });
+  }
+
+  createCountry() {
+    console.log('Crear Pais');
   }
 
 }

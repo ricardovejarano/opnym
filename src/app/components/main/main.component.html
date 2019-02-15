@@ -1,7 +1,50 @@
+<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+
 <div class="containter">
-    <div class="row">
-        <div class="col s4">This div is 12-columns wide on all screen sizes</div>
-        <div class="col s4">6-columns (one-half)</div>
-        <div class="col s4">6-columns (one-half)</div>
+  <div class="row">
+    <div class="col s4">This div is 12-columns wide on all screen sizes</div>
+    <div class="col s4">6-columns (one-half)</div>
+    <div class="col s4">6-columns (one-half)</div>
+  </div>
+</div>
+
+<!--MODAL TO CREATE COUNTRY-->
+<div id="modal1" class="modal">
+  <div class="modal-content center-align">
+    <h4>Crear un nuevo Pais</h4>
+    <form (ngSubmit)="createCountrySubmit()" #createCountryForm="ngForm">
+      <div class="row center">
+        <div class="input-field col s6 offset-s3">
+          <i class="material-icons prefix">filter_none</i>
+          <input id="icon_prefix" type="text" [(ngModel)]="country.nameCountry" name="nameCountry"
+            #nameCountry="ngModel" required class="validate">
+          <label id="placeh" for="icon_prefix">Nombre del Pais</label>
+        </div>
+
+        <div class="file-field input-field col s6 offset-s3">
+          <div class="btn">
+            <span>Bandera</span>
+            <input type="file">
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate" type="text">
+          </div>
+        </div>
+
+        <div class="center-align">
+          <!--
+             <button class="teal darken-3 waves-effect waves-light btn" [disabled]="!createCountryForm.form.valid">Ingresar</button> 
+            -->
+        </div>
       </div>
+    </form>
+  </div>
+  <div class="center-align">
+    <div class="row center">
+      <button id="btnCreate" [disabled]="!createCountryForm.form.valid"
+        class="waves-effect waves-light btn modal-trigger" (click)="createCountry()">Crear
+        pais</button>
+      <button id="btnCancel" class="btn modal-trigger red" (click)="closeModal()">Cancelar</button>
+    </div>
+  </div>
 </div>
