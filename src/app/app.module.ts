@@ -9,6 +9,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { AppRoutingModule } from './app.routing';
 import { LoginComponent } from './components/login/login.component';
 import { ParticlesModule } from 'angular-particle';
+import { MainComponent } from './components/main/main.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ParticlesModule } from 'angular-particle';
     NavBarComponent,
     HomeComponent,
     FooterComponent,
-    LoginComponent
+    LoginComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,

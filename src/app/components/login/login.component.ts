@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,13 +14,14 @@ export class LoginComponent implements OnInit {
   email = '';
   password = '';
 
-  constructor() { }
+  constructor(public router: Router) { }
 
   ngOnInit() {
     this.initialiceParticles();
   }
 
   loginSubmit() {
+    this.router.navigate(['main']);
     console.log('INICIA SESIÓN');
   }
 
