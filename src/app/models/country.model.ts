@@ -2,17 +2,20 @@ import { NewsIntro } from './newsIntro.model';
 
 export class Country {
     constructor($key = '',
-        nameCountry = '',
-        codeCountry = '',
+        name = '',
+        code = '',
+        flag = '',
         news = [],
     ) {
         this.$key = $key;
-        this.nameCountry = nameCountry;
-        this.codeCountry = codeCountry;
+        this.name = name;
+        this.code = code;
+        this.flag = flag;
         this.news = news;
     }
     $key?: string;
-    nameCountry?: string;
-    codeCountry?: string;
+    name?: string;
+    code?: string;
+    flag?: string;
     news?: NewsIntro[];
 }
