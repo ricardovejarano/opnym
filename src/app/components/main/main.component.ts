@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Country } from 'src/app/models/country.model';
+import { MainService } from 'src/app/services/main.service';
 declare var jQuery: any;
 
 @Component({
@@ -10,15 +11,15 @@ declare var jQuery: any;
 export class MainComponent implements OnInit {
 
   country: Country = new Country();
+  file: File;
 
-  constructor() { }
+  constructor(public mainService: MainService) { }
 
   ngOnInit() {
     this.initModal();
   }
 
   createCountrySubmit() {
-    console.log('Se crea Pais');
   }
 
   initModal() {
@@ -34,7 +35,13 @@ export class MainComponent implements OnInit {
   }
 
   createCountry() {
-    console.log('Crear Pais');
+    this.country.codeCountry = this.country.nameCountry.replace(' ', '_').toLowerCase();
+    console.log('Country code: ', this.country.codeCountry);
+    this.mainService.saveCountryImage(this.country.codeCountry, this.file);
+  }
+
+  fileChangeListener($event) {
+    this.file = $event.target.files[0];
   }
 
 }

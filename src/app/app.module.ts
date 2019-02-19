@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFirestoreModule, FirestoreSettingsToken } from 'angularfire2/firestore';
 
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
@@ -17,6 +18,7 @@ import { ParticlesModule } from 'angular-particle';
 import { MainComponent } from './components/main/main.component';
 import { environment } from 'src/environments/environment';
 import { MainService } from './services/main.service';
+import { FirebaseConfig } from 'src/firebase.config';
 
 @NgModule({
   declarations: [
@@ -32,12 +34,12 @@ import { MainService } from './services/main.service';
     AppRoutingModule,
     FormsModule,
     ParticlesModule,
+    AngularFireModule.initializeApp(FirebaseConfig.firebase),
+    AngularFirestoreModule,
     AngularFireAuthModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig),
-    AngularFireAuthModule,
-    AngularFireDatabaseModule,
+    AngularFireDatabaseModule
   ],
-  providers: [MainService],
+  providers: [MainService, { provide: FirestoreSettingsToken, useValue: {} }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -24,7 +24,7 @@
         <div class="file-field input-field col s6 offset-s3">
           <div class="btn">
             <span>Bandera</span>
-            <input type="file">
+            <input type="file" accept="image/*" (change)="fileChangeListener($event)">
           </div>
           <div class="file-path-wrapper">
             <input class="file-path validate" type="text">
@@ -42,9 +42,9 @@
   <div class="center-align">
     <div class="row center">
       <button id="btnCreate" [disabled]="!createCountryForm.form.valid"
-        class="waves-effect waves-light btn modal-trigger" (click)="createCountry()">Crear
+        class="waves-effect waves-light btn modal-trigger" href="#modal1" (click)="createCountry()">Crear
         pais</button>
-      <button id="btnCancel" class="btn modal-trigger red" (click)="closeModal()">Cancelar</button>
+      <button id="btnCancel" class="btn modal-trigger red" href="#modal1" (click)="closeModal()">Cancelar</button>
     </div>
   </div>
 </div>
