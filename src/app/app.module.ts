@@ -23,6 +23,7 @@ import { environment } from 'src/environments/environment';
 import { MainService } from './services/main.service';
 import { FirebaseConfig } from 'src/firebase.config';
 import { SelectNewsComponent } from './components/select-news/select-news.component';
+import { CountrySelectedComponent } from './components/select-news/country-selected/country-selected.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { SelectNewsComponent } from './components/select-news/select-news.compon
     FooterComponent,
     LoginComponent,
     MainComponent,
-    SelectNewsComponent
+    SelectNewsComponent,
+    CountrySelectedComponent
   ],
   imports: [
     BrowserModule,

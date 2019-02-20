@@ -4,6 +4,7 @@ import { MainService } from 'src/app/services/main.service';
 import * as firebase from 'firebase/app';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 declare var jQuery: any;
 declare var M: any;
 
@@ -20,7 +21,8 @@ export class MainComponent implements OnInit {
   file: File;
   fileModel = '';
 
-  constructor(public mainService: MainService, public spinner: NgxSpinnerService) { }
+  constructor(public mainService: MainService, public spinner: NgxSpinnerService,
+    public router: Router) { }
 
   ngOnInit() {
     this.spinner.show();
@@ -80,7 +82,7 @@ export class MainComponent implements OnInit {
   }
 
   clickCard(country: Country) {
-    window.alert(country.name.toString());
+    this.router.navigate([`country/${country.code}`]);
   }
 
   createCountrySubmit() {
