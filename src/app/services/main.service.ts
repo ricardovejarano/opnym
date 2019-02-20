@@ -23,6 +23,10 @@ export class MainService {
     return this.db.collection('country').valueChanges();
   }
 
+  getCountry(codeCountry) {
+    return this.db.collection('country').doc(codeCountry).get();
+  }
+
 
   getCountryImage(countryCode) {
     const storage = firebase.storage();

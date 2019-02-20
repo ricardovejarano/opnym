@@ -35,7 +35,7 @@ export class MainComponent implements OnInit {
       .subscribe(res => {
         this.countries = res;
         this.spinner.hide();
-        console.log('países traídos', this.countries);
+        // console.log('países traídos', this.countries);
       });
   }
 

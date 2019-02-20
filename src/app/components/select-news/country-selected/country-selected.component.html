@@ -1,3 +1,36 @@
 <body>
-  <h1>PAÍS SELECCIONADO</h1>
+  <div class="container" style="padding-top: 60px">
+    <div class="row">
+
+      <div class="col s3">
+
+        <div class="input-field col s12">
+          <select (ngModelChange)="onChangeSelect($event)" [ngModel]="" name="codeCountrySelected">
+            <option value="" disabled selected>Cambiar País</option>
+            <option *ngFor="let country of countries" value="{{country.code}}">{{country.name}}</option>
+          </select>
+        </div>
+        
+        <div *ngIf="flagChage == false" class="card hoverable z-depth-1 col s12">
+          <div class="card-image">
+            <img [src]="country.urlLink ? country.urlLink: '/assets/default/wall-street.jpg'"
+              style="height: 150px; border-radius: 25px 25px 35px 0">
+          </div>
+          <div class="card-content center-align">
+            <strong>
+              <h5>{{country.name}}</h5>
+            </strong>
+          </div>
+        </div>
+
+      </div>
+
+
+
+      <div class="col s9" style="padding-left: 60px">
+        <h3>Lista de noticias</h3>
+      </div>
+
+    </div>
+  </div>
 </body>
