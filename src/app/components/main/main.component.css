@@ -9,3 +9,11 @@
 #btnCancel {
     margin-left: 5px;
 }
+
+.card{
+    border-radius: 25px;
+}
+
+.card .card-image img {
+    border-radius: 2px 2px 40px 0;
+}

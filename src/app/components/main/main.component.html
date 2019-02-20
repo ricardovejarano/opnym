@@ -2,23 +2,23 @@
   <p style="font-size: 20px; color: white">Cargando...</p>
 </ngx-spinner>
 <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
-
-<div class="row">
-  <div  *ngFor="let country of countries">
-    <div class="col s4 m6">
-      <div class="card">
-        <div class="card-image">
-          <img [src]="country.urlLink">
-          <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-        </div>
-        <div class="card-content">
-          <p>{{country.name}}</p>
+<div class="container">
+  <div class="row">
+    <div *ngFor="let country of countries">
+      <div class="col s4 m6 l3">
+        <div class="card z-depth-2">
+          <div class="card-image">
+            <img [src]="country.urlLink" style="height: 150px; border-radius: 25px 25px 35px 0">
+            <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
+          </div>
+          <div class="card-content">
+            <p>{{country.name}}</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
 <!--MODAL TO CREATE COUNTRY-->
 <div id="modal1" class="modal">
   <div class="modal-content center-align">
@@ -35,7 +35,7 @@
         <div class="file-field input-field col s6 offset-s3">
           <div class="btn">
             <span>Bandera</span>
-            <input type="file" required accept="image/*" (change)="fileChangeListener($event)"  #fileimageInput>
+            <input type="file" required accept="image/*" (change)="fileChangeListener($event)" #fileimageInput>
           </div>
           <div class="file-path-wrapper">
             <input class="file-path validate" type="text" #fileimageInput2>
