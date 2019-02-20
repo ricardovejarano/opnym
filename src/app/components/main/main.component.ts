@@ -77,6 +77,10 @@ export class MainComponent implements OnInit {
     }
   }
 
+  clickCard(country: Country) {
+    window.alert(country.name.toString());
+  }
+
   createCountrySubmit() {
   }
 
