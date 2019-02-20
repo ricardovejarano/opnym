@@ -22,29 +22,11 @@ export class MainService {
     this.country2.subscribe(res => {
       console.log('res', res);
     });
-
-    // console.log('COUNTRY', this.country);
   }
 
   saveCountryImage(image, flagCountry) {
     const storageRef = firebase.storage().ref();
-    const uploadTask = storageRef.child(`country_flag/${flagCountry}`).put(image);
-
-    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
-      (snapshot) =>  {
-        // upload in progress
-        // upload.progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-      },
-      (error) => {
-        // upload failed
-        console.log(error);
-      },
-      () => {
-        // upload success
-        console.log('SE SUBE LA IMAGEN');
-      }
-    );
-
+    return storageRef.child(`country_flag/${flagCountry}`).put(image);
   }
 
   saveCountry(country: Country) {

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Country } from 'src/app/models/country.model';
 import { MainService } from 'src/app/services/main.service';
+import * as firebase from 'firebase/app';
 declare var jQuery: any;
+declare var M: any;
 
 @Component({
   selector: 'app-main',
@@ -9,7 +11,6 @@ declare var jQuery: any;
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-
   country: Country = new Country();
   file: File;
 
@@ -27,10 +28,26 @@ export class MainComponent implements OnInit {
         console.log('SE CREA PAIS');
       }, err => {
         console.log('Error', err);
+        if (!this.file) {
+          this.closeModal();
+        }
       });
 
     if (this.file) {
-      this.mainService.saveCountryImage(this.file, this.country.flag);
+      this.mainService.saveCountryImage(this.file, this.country.flag)
+        .on(firebase.storage.TaskEvent.STATE_CHANGED,
+          (snapshot) => {
+          },
+          (error) => {
+            console.log('Ocurrió un error subiendo la imagen', error);
+            window.alert('Ocurrió un error subiendo la imagen');
+          },
+          () => {
+            console.log('SE SUBE LA IMAGEN CORRECTAMENTE');
+            M.toast({html: 'País creado', classes: 'rounded'});
+            this.closeModal();
+          }
+        );
     }
 
   }
@@ -46,7 +63,7 @@ export class MainComponent implements OnInit {
 
   closeModal() {
     jQuery(document).ready(function () {
-      jQuery('.modal').modal().close();
+      jQuery('.modal').modal('close');
     });
   }
 

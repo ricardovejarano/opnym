@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
     this.myParams = {
       particles: {
         number: {
-          value: 10,
+          value: 25,
         },
         color: {
           value: '#009688'

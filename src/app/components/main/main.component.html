@@ -1,5 +1,5 @@
 <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
-
+<a onclick="M.toast({html: 'I am a toast'})" class="btn">Toast!</a>
 <div class="containter">
   <div class="row">
     <div class="col s4">This div is 12-columns wide on all screen sizes</div>
@@ -9,7 +9,7 @@
 </div>
 
 <!--MODAL TO CREATE COUNTRY-->
-<div id="modal1" class="modal">
+<div id="modal1" class="modal" >
   <div class="modal-content center-align">
     <h4>Crear un nuevo Pais</h4>
     <form (ngSubmit)="createCountrySubmit()" #createCountryForm="ngForm">
