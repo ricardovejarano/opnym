@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { MainService } from 'src/app/services/main.service';
 import { Country } from 'src/app/models/country.model';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 declare var jQuery: any;
 
 @Component({
@@ -17,7 +18,7 @@ export class CountrySelectedComponent implements OnInit {
   flagChage = false;
 
   constructor(public location: Location, public mainService: MainService,
-    public router: Router) { }
+    public router: Router, public spinner: NgxSpinnerService) { }
 
   ngOnInit() {
     this.getCountries();
@@ -48,6 +49,7 @@ export class CountrySelectedComponent implements OnInit {
           this.flagChage = true;
           setTimeout(() => {
             this.flagChage = false;
+            this.spinner.hide();
           }, 100);
           // console.log('Document data:', doc.data());
         }
@@ -57,6 +59,7 @@ export class CountrySelectedComponent implements OnInit {
   }
 
   onChangeSelect(event) {
+    this.spinner.show();
     this.router.navigate([`country/${event}`]);
     setTimeout(() => {
       this.getCountrySelected();
