@@ -22,6 +22,7 @@ import { MainComponent } from './components/main/main.component';
 import { environment } from 'src/environments/environment';
 import { MainService } from './services/main.service';
 import { FirebaseConfig } from 'src/firebase.config';
+import { SelectNewsComponent } from './components/select-news/select-news.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { FirebaseConfig } from 'src/firebase.config';
     HomeComponent,
     FooterComponent,
     LoginComponent,
-    MainComponent
+    MainComponent,
+    SelectNewsComponent
   ],
   imports: [
     BrowserModule,

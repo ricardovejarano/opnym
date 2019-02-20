@@ -23,6 +23,7 @@ export class MainComponent implements OnInit {
   constructor(public mainService: MainService, public spinner: NgxSpinnerService) { }
 
   ngOnInit() {
+    this.spinner.show();
     this.initModal();
     this.getCountries();
   }
@@ -31,6 +32,7 @@ export class MainComponent implements OnInit {
     this.mainService.getCountries()
       .subscribe(res => {
         this.countries = res;
+        this.spinner.hide();
         console.log('países traídos', this.countries);
       });
   }
