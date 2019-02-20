@@ -9,6 +9,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFirestoreModule, FirestoreSettingsToken } from 'angularfire2/firestore';
 import { AngularFireStorageModule } from 'angularfire2/storage';
 
+import { NgxSpinnerModule } from 'ngx-spinner';
+
 import { AppComponent } from './app.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { HomeComponent } from './components/home/home.component';
@@ -39,7 +41,8 @@ import { FirebaseConfig } from 'src/firebase.config';
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    NgxSpinnerModule
   ],
   providers: [MainService, { provide: FirestoreSettingsToken, useValue: {} }],
   bootstrap: [AppComponent]

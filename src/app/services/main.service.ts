@@ -16,12 +16,18 @@ export class MainService {
   user: Observable<firebase.User>;
   usersList: AngularFireList<any>;
 
-  constructor(public afAuth: AngularFireAuth, public db: AngularFirestore,
-    private afStorage: AngularFireStorage) {
-    this.country2 = db.collection('country').valueChanges();
-    this.country2.subscribe(res => {
-      console.log('res', res);
-    });
+  constructor(public afAuth: AngularFireAuth, public db: AngularFirestore) {
+  }
+
+  getCountries() {
+    return this.db.collection('country').valueChanges();
+  }
+
+
+  getCountryImage(countryCode) {
+    const storage = firebase.storage();
+    const pathReference = storage.ref(`country_flag/${countryCode}`);
+    return pathReference.getDownloadURL();
   }
 
   saveCountryImage(image, flagCountry) {
@@ -34,8 +40,8 @@ export class MainService {
     return docRef.set({
       name: country.name,
       code: country.code,
-      flag: country.flag
+      flag: country.flag,
+      urlLink: country.urlLink
     });
-
   }
 }
