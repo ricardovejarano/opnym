@@ -1,0 +1,67 @@
+<ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-atom">
+  <p style="font-size: 20px; color: white">Cargando...</p>
+</ngx-spinner>
+
+<body>
+  <div class="container">
+    <div class="row" style="margin-top: 50px">
+      <div *ngFor="let country of countries">
+        <div class="col s4 m6 l3" (click)="clickCard(country)">
+          <div class="card hoverable z-depth-1">
+            <div class="card-image">
+              <img [src]="country.urlLink" style="height: 140px; border-radius: 25px 25px 35px 0">
+            </div>
+            <div class="card-content center-align">
+              <strong>
+                <p>{{country.name}}</p>
+              </strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row center">
+      <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Crear País</a>
+    </div>
+  </div>
+  <!--MODAL TO CREATE COUNTRY-->
+  <div id="modal1" class="modal">
+    <div class="modal-content center-align">
+      <h4>Crear un nuevo Pais</h4>
+      <form (ngSubmit)="createCountrySubmit()" #createCountryForm="ngForm">
+        <div class="row center">
+          <div class="input-field col s6 offset-s3">
+            <i class="material-icons prefix">filter_none</i>
+            <input id="icon_prefix" type="text" [(ngModel)]="country.name" name="nameCountry" #nameCountry="ngModel"
+              required class="validate">
+            <label id="placeh" for="icon_prefix">Nombre del Pais</label>
+          </div>
+
+          <div class="file-field input-field col s6 offset-s3">
+            <div class="btn">
+              <span>Bandera</span>
+              <input type="file" required accept="image/*" (change)="fileChangeListener($event)" #fileimageInput>
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text" #fileimageInput2>
+            </div>
+          </div>
+
+          <div class="center-align">
+            <!--
+             <button class="teal darken-3 waves-effect waves-light btn" [disabled]="!createCountryForm.form.valid">Ingresar</button> 
+            -->
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="center-align">
+      <div class="row center">
+        <button id="btnCreate" [disabled]="!createCountryForm.form.valid"
+          class="waves-effect waves-light btn modal-trigger" href="#modal1" (click)="createCountry()">Crear
+          pais</button>
+        <button id="btnCancel" class="btn modal-trigger red" href="#modal1" (click)="closeModal()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</body>

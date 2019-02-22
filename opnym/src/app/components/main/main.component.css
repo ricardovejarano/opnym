@@ -1,0 +1,23 @@
+body {
+    min-height: 500px;
+}
+
+#modal1 {
+    padding-bottom: 20px;
+}
+
+#btnCreate {
+    margin-right: 5px;
+}
+
+#btnCancel {
+    margin-left: 5px;
+}
+
+.card{
+    border-radius: 25px;
+}
+
+.card .card-image img {
+    border-radius: 2px 2px 40px 0;
+}

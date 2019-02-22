@@ -1,0 +1,35 @@
+<particles [params]="myParams" [style]="myStyle" [width]="width" [height]="height"></particles>
+<body>
+  <div class="container">
+    <div class="row center">
+      <div id="card-container" class="card-panel white z-depth-3 col s6 offset-s3">
+        <div class="row center">
+          <form (ngSubmit)="loginSubmit()" #loginForm="ngForm">
+            <div class="row center">
+              <div id="logo-login" class="input-field">
+                <h5>Inicia Sesión</h5>
+              </div>
+              <div class="input-field col s12">
+                <i class="material-icons prefix">account_circle</i>
+                <input id="icon_prefix" type="text" [(ngModel)]="email" name="name" #nameUsr="ngModel" required email class="validate">
+                <label id="placeh" for="icon_prefix">Correo electrónico</label>
+              </div>
+              <div class="input-field col s12">
+                <i class="material-icons prefix">https</i>
+                <input id="icon_telephone" type="password" [(ngModel)]="password" name="password" #passwordUsr="ngModel" required class="validate">
+                <label id="placeh" for="icon_telephone">Contraseña</label>
+              </div>
+              <div class="center-align">
+               <!--
+                <button class="teal darken-3 waves-effect waves-light btn" [disabled]="!loginForm.form.valid">Ingresar</button> 
+               -->
+                <button class="teal darken-3 waves-effect waves-light btn">Ingresar</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
