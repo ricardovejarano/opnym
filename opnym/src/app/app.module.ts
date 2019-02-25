@@ -25,6 +25,8 @@ import { FirebaseConfig } from 'src/firebase.config';
 import { SelectNewsComponent } from './components/select-news/select-news.component';
 import { CountrySelectedComponent } from './components/select-news/country-selected/country-selected.component';
 import { NewsService } from './services/news.service';
+import { SingleNewsComponent } from './components/select-news/single-news/single-news.component';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { NewsService } from './services/news.service';
     LoginComponent,
     MainComponent,
     SelectNewsComponent,
-    CountrySelectedComponent
+    CountrySelectedComponent,
+    SingleNewsComponent,
   ],
   imports: [
     BrowserModule,

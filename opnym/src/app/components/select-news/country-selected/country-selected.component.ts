@@ -117,6 +117,10 @@ export class CountrySelectedComponent implements OnInit {
     }, 300);
   }
 
+  goToSingleNews(codeNews) {
+    this.router.navigate([`${codeNews}`]);
+  }
+
 
   initSelector() {
     jQuery(document).ready(function () {

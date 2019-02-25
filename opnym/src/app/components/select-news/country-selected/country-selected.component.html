@@ -41,7 +41,7 @@
 
         <div class="col s9 align-center center" *ngIf="newsRegistred.length != 0" style="padding-left: 60px">
           <div class="collection">
-            <a href="#!" *ngFor="let news of newsRegistred" class="collection-item">{{news.name}}</a>
+            <a *ngFor="let news of newsRegistred" (click)="goToSingleNews(news.codeNews)" class="collection-item">{{news.name}}</a>
           </div>
         </div>
       </div>
