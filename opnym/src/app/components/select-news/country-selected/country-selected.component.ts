@@ -118,7 +118,7 @@ export class CountrySelectedComponent implements OnInit {
   }
 
   goToSingleNews(codeNews) {
-    this.router.navigate([`${codeNews}`]);
+    this.router.navigate([`news/${codeNews}`]);
   }
 
 

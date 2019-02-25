@@ -4,12 +4,14 @@ import { homeRoute } from './components/home/home.routing';
 import { loginRoute } from './components/login/login.routing';
 import { mainRoute } from './components/main/main.routing';
 import { SelectNewsRoute } from './components/select-news/select-news.routing';
+import { NewsRoute } from './components/news/news.routing';
 
 const appRoutes: Routes = [
     ...homeRoute,
     ...loginRoute,
     ...mainRoute,
-    ...SelectNewsRoute
+    ...SelectNewsRoute,
+    ...NewsRoute
 ];
 
 @NgModule({
