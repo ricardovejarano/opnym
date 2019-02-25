@@ -4,6 +4,7 @@ import { MainService } from 'src/app/services/main.service';
 import { Country } from 'src/app/models/country.model';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { NewsIntro } from 'src/app/models/newsIntro.model';
 declare var jQuery: any;
 
 @Component({
@@ -14,16 +15,26 @@ declare var jQuery: any;
 export class CountrySelectedComponent implements OnInit {
   country: Country = new Country();
   countries: Country[] = [];
+  news: NewsIntro = new NewsIntro();
   codeCountrySelected = '';
   flagChage = false;
 
   constructor(public location: Location, public mainService: MainService,
-    public router: Router, public spinner: NgxSpinnerService) { }
+    public router: Router, public spinner: NgxSpinnerService) {
+      this.initModal();
+      this.country.name = 'País';
+     }
 
   ngOnInit() {
     this.getCountries();
     this.initSelector();
     this.getCountrySelected();
+  }
+
+  createNews() {
+    this.news.codeNews = this.mainService.getCodeFromName(this.news.name);
+    console.log('News name: ' + this.news.name, 'News code: ' + this.news.codeNews, 'Country name: ' + this.country.name,
+    'Country code: ' + this.country.code );
   }
 
   getCountries() {
@@ -45,13 +56,12 @@ export class CountrySelectedComponent implements OnInit {
         } else {
           this.country = new Country();
           this.country = doc.data();
-          console.log(this.country);
+          // console.log(this.country);
           this.flagChage = true;
           setTimeout(() => {
             this.flagChage = false;
             this.spinner.hide();
           }, 100);
-          // console.log('Document data:', doc.data());
         }
       }, err => {
         console.log('Error getting document', err);
@@ -69,11 +79,25 @@ export class CountrySelectedComponent implements OnInit {
 
   initSelector() {
     setTimeout(() => {
+      // Delay to show selector in actual render
       jQuery(document).ready(function () {
         jQuery('select').formSelect();
       });
     }, 100);
-
   }
+
+  initModal() {
+    jQuery(document).ready(function () {
+      jQuery('.modal').modal();
+    });
+  }
+
+  closeModal() {
+    jQuery(document).ready(function () {
+      jQuery('.modal').modal('close');
+    });
+  }
+
+
 
 }

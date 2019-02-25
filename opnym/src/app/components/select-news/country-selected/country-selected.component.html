@@ -1,6 +1,7 @@
 <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-atom">
-    <p style="font-size: 20px; color: white">Cargando...</p>
-  </ngx-spinner>
+  <p style="font-size: 20px; color: white">Cargando...</p>
+</ngx-spinner>
+
 <body>
   <div class="container" style="padding-top: 60px">
     <div class="row">
@@ -13,7 +14,7 @@
             <option *ngFor="let country of countries" value="{{country.code}}">{{country.name}}</option>
           </select>
         </div>
-        
+
         <div *ngIf="flagChage == false" class="card hoverable z-depth-1 col s12">
           <div class="card-image">
             <img [src]="country.urlLink ? country.urlLink: '/assets/default/wall-street.jpg'"
@@ -24,17 +25,46 @@
               <h5>{{country.name}}</h5>
             </strong>
           </div>
+
+        </div>
+
+        <div class="col s12 offset-s2">
+          <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Agregar noticia</a>
         </div>
 
       </div>
 
-
-
       <div class="col s9" style="padding-left: 60px">
-        <button>Agregar noticia</button>
         <h3>Lista de noticias</h3>
       </div>
 
     </div>
   </div>
 </body>
+
+<!--MODAL TO CREATE NEWS-->
+<div id="modal1" class="modal">
+  <div class="modal-content center-align">
+    <h4>Crear una nueva noticia</h4>
+    <form (ngSubmit)="addNews()" #createNewsForm="ngForm">
+      <div class="row center">
+        <div class="input-field col s6 offset-s3">
+          <i class="material-icons prefix">library_books</i>
+          <input id="icon_prefix" type="text" [(ngModel)]="news.name" name="nameNews" #nameNews="ngModel" required
+            class="validate">
+          <label id="placeh" for="icon_prefix">Nombre de noticia</label>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="center-align">
+    <div class="row center">
+      <button id="btnCreate" [disabled]="!createNewsForm.form.valid" class="waves-effect waves-light btn modal-trigger"
+        href="#modal1" (click)="createNews()">Crear
+        pais</button>
+      <button id="btnCancel" type="button" class="btn modal-trigger red" href="#modal1"
+        (click)="closeModal()">Cancelar</button>
+    </div>
+  </div>
+</div>

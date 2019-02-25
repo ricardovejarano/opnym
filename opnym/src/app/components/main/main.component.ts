@@ -42,7 +42,8 @@ export class MainComponent implements OnInit {
   createCountry() {
     if (this.file) {
       this.spinner.show();
-      this.country.code = this.country.name.replace(' ', '_').toLowerCase();
+      this.country.code = this.mainService.getCodeFromName(this.country.name);
+      // this.country.code = this.country.name.replace(' ', '_').toLowerCase();
       this.country.flag = this.country.code + '_flag';
       this.mainService.saveCountryImage(this.file, this.country.flag)
         .on(firebase.storage.TaskEvent.STATE_CHANGED,

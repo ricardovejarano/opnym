@@ -27,7 +27,6 @@ export class MainService {
     return this.db.collection('country').doc(codeCountry).get();
   }
 
-
   getCountryImage(countryCode) {
     const storage = firebase.storage();
     const pathReference = storage.ref(`country_flag/${countryCode}`);
@@ -47,5 +46,14 @@ export class MainService {
       flag: country.flag,
       urlLink: country.urlLink
     });
+  }
+
+  getCodeFromName(name: string) {
+    let codeName = '';
+    codeName = name.toLowerCase()
+    .replace(/ /g, '_').replace(/á/g, 'a').replace(/é/g, 'e').replace(/í/g, 'i')
+    .replace(/ó/g, 'o').replace(/ú/g, 'u').replace(/ñ/g, 'n').replace(/[, ]+/g, '_')
+    .replace(/[(]+/g, '_').replace(/[)]+/g, '_').replace(/[/]+/g, '_');
+    return codeName;
   }
 }
