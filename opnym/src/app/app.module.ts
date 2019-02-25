@@ -24,6 +24,7 @@ import { MainService } from './services/main.service';
 import { FirebaseConfig } from 'src/firebase.config';
 import { SelectNewsComponent } from './components/select-news/select-news.component';
 import { CountrySelectedComponent } from './components/select-news/country-selected/country-selected.component';
+import { NewsService } from './services/news.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { CountrySelectedComponent } from './components/select-news/country-selec
     AngularFireStorageModule,
     NgxSpinnerModule
   ],
-  providers: [MainService, { provide: FirestoreSettingsToken, useValue: {} }],
+  providers: [MainService,
+    NewsService, { provide: FirestoreSettingsToken, useValue: {} }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

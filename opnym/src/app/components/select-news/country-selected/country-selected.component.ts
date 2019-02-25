@@ -5,7 +5,9 @@ import { Country } from 'src/app/models/country.model';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { NewsIntro } from 'src/app/models/newsIntro.model';
+import { NewsService } from 'src/app/services/news.service';
 declare var jQuery: any;
+declare var M: any;
 
 @Component({
   selector: 'app-country-selected',
@@ -16,25 +18,53 @@ export class CountrySelectedComponent implements OnInit {
   country: Country = new Country();
   countries: Country[] = [];
   news: NewsIntro = new NewsIntro();
+  newsRegistred: NewsIntro[] = [];
   codeCountrySelected = '';
   flagChage = false;
 
   constructor(public location: Location, public mainService: MainService,
-    public router: Router, public spinner: NgxSpinnerService) {
-      this.initModal();
-      this.country.name = 'País';
-     }
+    public router: Router, public spinner: NgxSpinnerService, public newsService: NewsService) {
+    this.initModal();
+    this.country.name = 'País';
+  }
 
   ngOnInit() {
+    this.spinner.show();
     this.getCountries();
     this.initSelector();
     this.getCountrySelected();
+    this.getRegistredNews();
   }
 
   createNews() {
+    this.spinner.show();
     this.news.codeNews = this.mainService.getCodeFromName(this.news.name);
-    console.log('News name: ' + this.news.name, 'News code: ' + this.news.codeNews, 'Country name: ' + this.country.name,
-    'Country code: ' + this.country.code );
+    this.news.countryCode = this.country.code;
+    this.news.countryName = this.country.name;
+    this.newsService.createNews(this.news)
+      .then(res => {
+        console.log('Succes data pushed from new News');
+        M.toast({ html: 'Noticia creada', classes: 'teal darken-4 rounded' });
+        this.closeModal();
+        this.spinner.hide();
+      }, err => {
+        console.log('Error pushing news data', err);
+        this.spinner.hide();
+        M.toast({ html: 'Ocurrió un error guardando la noticia', classes: 'red darken-4 rounded' });
+      });
+  }
+
+  getRegistredNews() {
+    this.newsService.getNewsRegister()
+    .subscribe(res => {
+      this.newsRegistred = res;
+      this.spinner.hide();
+      console.log('Lista de noticias: ', this.newsRegistred);
+    }, err => {
+      console.log('Error al traer los datos', err);
+      this.spinner.hide();
+      M.toast({ html: 'Ocurrió un error guardando la noticia' + err , classes: 'red darken-4 rounded' });
+    });
   }
 
   getCountries() {

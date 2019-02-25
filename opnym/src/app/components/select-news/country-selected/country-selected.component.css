@@ -17,3 +17,11 @@ body {
 .card .card-content {
     padding: 0px;
 }
+
+#btnCreate {
+    margin-right: 5px;
+}
+
+#btnCancel {
+    margin-left: 5px;
+}
