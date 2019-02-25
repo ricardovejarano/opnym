@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { NewsIntro } from 'src/app/models/newsIntro.model';
 import { NewsService } from 'src/app/services/news.service';
+import { News } from 'src/app/models/news.model';
 declare var jQuery: any;
 declare var M: any;
 
@@ -25,13 +26,13 @@ export class CountrySelectedComponent implements OnInit {
   constructor(public location: Location, public mainService: MainService,
     public router: Router, public spinner: NgxSpinnerService, public newsService: NewsService) {
     this.initModal();
+    this.initSelector();
     this.country.name = 'País';
   }
 
   ngOnInit() {
     this.spinner.show();
     this.getCountries();
-    this.initSelector();
     this.getCountrySelected();
     this.getRegistredNews();
   }
@@ -39,6 +40,7 @@ export class CountrySelectedComponent implements OnInit {
   createNews() {
     this.spinner.show();
     this.news.codeNews = this.mainService.getCodeFromName(this.news.name);
+    this.news.codeNews = this.country.code + '_' + this.news.codeNews;
     this.news.countryCode = this.country.code;
     this.news.countryName = this.country.name;
     this.newsService.createNews(this.news)
@@ -47,6 +49,7 @@ export class CountrySelectedComponent implements OnInit {
         M.toast({ html: 'Noticia creada', classes: 'teal darken-4 rounded' });
         this.closeModal();
         this.spinner.hide();
+        this.news = new NewsIntro();
       }, err => {
         console.log('Error pushing news data', err);
         this.spinner.hide();
@@ -55,22 +58,24 @@ export class CountrySelectedComponent implements OnInit {
   }
 
   getRegistredNews() {
-    this.newsService.getNewsRegister()
-    .subscribe(res => {
-      this.newsRegistred = res;
-      this.spinner.hide();
-      console.log('Lista de noticias: ', this.newsRegistred);
-    }, err => {
-      console.log('Error al traer los datos', err);
-      this.spinner.hide();
-      M.toast({ html: 'Ocurrió un error guardando la noticia' + err , classes: 'red darken-4 rounded' });
-    });
+    /*
+    this.newsService.getNewsRegister(this.country.code)
+      .subscribe(res => {
+        // this.newsRegistred = res;
+        this.spinner.hide();
+        console.log('Lista de noticias: ', res);
+      }, err => {
+        console.log('Error al traer los datos', err);
+        this.spinner.hide();
+        M.toast({ html: 'Ocurrió un error guardando la noticia' + err, classes: 'red darken-4 rounded' });
+      });*/
   }
 
   getCountries() {
     this.mainService.getCountries()
       .subscribe(res => {
         this.countries = res;
+        this.initSelector();
         // console.log('Paises en componente', this.countries);
       }, err => {
         console.log('Se produjo un error en country-selected getCountries()', err);
@@ -108,12 +113,9 @@ export class CountrySelectedComponent implements OnInit {
 
 
   initSelector() {
-    setTimeout(() => {
-      // Delay to show selector in actual render
-      jQuery(document).ready(function () {
-        jQuery('select').formSelect();
-      });
-    }, 100);
+    jQuery(document).ready(function () {
+      jQuery('select').formSelect();
+    });
   }
 
   initModal() {

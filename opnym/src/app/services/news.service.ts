@@ -10,7 +10,7 @@ export class NewsService {
   constructor(public db: AngularFirestore) { }
 
   createNews(news: NewsIntro) {
-    const docRef = this.db.collection('news-intro').doc(news.codeNews);
+    const docRef = this.db.collection(`news`).doc(news.codeNews);
     return docRef.set({
       name: news.name,
       codeNews: news.codeNews,
@@ -19,8 +19,8 @@ export class NewsService {
     });
   }
 
-  getNewsRegister() {
-    return this.db.collection('news-intro').valueChanges();
+  getNewsRegister(codeCountry) {
+    return this.db.collection(`news`);
   }
 
 }

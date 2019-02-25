@@ -34,8 +34,14 @@
 
       </div>
 
-      <div class="col s9 align-center center" style="padding-left: 60px">
+      <div class="col s9 align-center center" *ngIf="newsRegistred.length == 0" style="padding-left: 60px">
         <h3>No Hay noticias registradas para este País</h3>
+      </div>
+
+      <div class="col s9 align-center center" *ngIf="newsRegistred.length != 0" style="padding-left: 60px">
+        <div class="collection">
+          <a href="#!" *ngFor="let news of newsRegistred" class="collection-item">{{news.name}}</a>
+        </div>
       </div>
 
     </div>
