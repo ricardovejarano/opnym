@@ -28,6 +28,7 @@ export class CountrySelectedComponent implements OnInit {
     this.initModal();
     this.initSelector();
     this.country.name = 'País';
+    this.codeCountrySelected = this.location.path().split('/')[2];
   }
 
   ngOnInit() {
@@ -58,17 +59,13 @@ export class CountrySelectedComponent implements OnInit {
   }
 
   getRegistredNews() {
-    /*
-    this.newsService.getNewsRegister(this.country.code)
+    this.newsService.getNewsRegister(this.codeCountrySelected)
       .subscribe(res => {
-        // this.newsRegistred = res;
-        this.spinner.hide();
-        console.log('Lista de noticias: ', res);
+        console.log(res);
+        this.newsRegistred = res;
       }, err => {
-        console.log('Error al traer los datos', err);
-        this.spinner.hide();
-        M.toast({ html: 'Ocurrió un error guardando la noticia' + err, classes: 'red darken-4 rounded' });
-      });*/
+        console.log('Se produjo un error', err);
+      });
   }
 
   getCountries() {
@@ -82,8 +79,11 @@ export class CountrySelectedComponent implements OnInit {
       });
   }
 
+  getURIPath() {
+    return this.location.path().split('/')[2];
+  }
+
   getCountrySelected() {
-    this.codeCountrySelected = this.location.path().split('/')[2];
     this.mainService.getCountry(this.codeCountrySelected)
       .subscribe(doc => {
         if (!doc.exists) {
@@ -95,7 +95,9 @@ export class CountrySelectedComponent implements OnInit {
           this.flagChage = true;
           setTimeout(() => {
             this.flagChage = false;
+            console.log('PAIS SELECCIONADO', this.country);
             this.spinner.hide();
+            this.getRegistredNews();
           }, 100);
         }
       }, err => {
@@ -107,8 +109,12 @@ export class CountrySelectedComponent implements OnInit {
     this.spinner.show();
     this.router.navigate([`country/${event}`]);
     setTimeout(() => {
-      this.getCountrySelected();
+      this.codeCountrySelected = this.getURIPath();
     }, 200);
+    console.log('Pais cambia a : ', this.codeCountrySelected);
+    setTimeout(() => {
+      this.getCountrySelected();
+    }, 300);
   }
 
 

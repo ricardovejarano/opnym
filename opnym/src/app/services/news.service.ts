@@ -20,7 +20,9 @@ export class NewsService {
   }
 
   getNewsRegister(codeCountry) {
-    return this.db.collection(`news`);
+    console.log('Codigo de pais en servicio: ' + codeCountry);
+    return this.db.collection(`news`, ref =>
+      ref.where('countryCode', '==', codeCountry)).valueChanges();
   }
 
 }
