@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-news',
-  templateUrl: './news.component.html',
+  template: '<router-outlet></router-outlet>',
   styleUrls: ['./news.component.css']
 })
 export class NewsComponent implements OnInit {
