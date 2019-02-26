@@ -16,7 +16,8 @@ export class NewsService {
       name: news.name,
       codeNews: news.codeNews,
       countryCode: news.countryCode,
-      countryName: news.countryName
+      countryName: news.countryName,
+      isDirect: news.isDirect
     });
   }
 
@@ -32,8 +33,13 @@ export class NewsService {
       desv: registerNews.desv,
       direction: registerNews.direction,
       strong: registerNews.strong,
-      annotation: registerNews.annotation
+      annotation: registerNews.annotation,
+      success: registerNews.success
     });
+  }
+
+  getNewsRecords(codeNews) {
+    return this.db.collection('news').doc(codeNews).collection('register').valueChanges();
   }
 
   getNewsRegister(codeCountry) {

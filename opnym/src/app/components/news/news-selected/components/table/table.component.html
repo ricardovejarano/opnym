@@ -1,29 +1,31 @@
 <table class="responsive-table centered highlight">
-    <thead>
-      <tr>
-        <th>Fecha</th>
-        <th>Hora</th>
-        <th>Act</th>
-        <th>F'cast</th>
-        <th>Prior</th>
-        <th>Rev</th>
-        <th>Desv</th>
-        <th>Direction</th>
-        <th>Strong</th>
-      </tr>
-    </thead>
+  <thead>
+    <tr>
+      <th>Fecha</th>
+      <th>Hora</th>
+      <th>Act</th>
+      <th>F'cast</th>
+      <th>Prior</th>
+      <th>Rev</th>
+      <th>Desv</th>
+      <th>Dirección</th>
+      <th>Fuerza</th>
+      <th>Resultado</th>
+    </tr>
+  </thead>
 
-    <tbody>
-      <tr>
-        <td>Alvin</td>
-        <td>Eclair</td>
-        <td>$0.87</td>
-        <td>Alvin</td>
-        <td>Eclair</td>
-        <td>$0.87</td>
-        <td>Alvin</td>
-        <td>Eclair</td>
-        <td>$0.87</td>
-      </tr>
-    </tbody>
-  </table>
+  <tbody>
+    <tr *ngFor="let record of recordsNews">
+      <td>{{record.dateNews | date: 'MM/dd/y'}}</td>
+      <td>{{record.hourNews}}</td>
+      <td>{{record.actual}}</td>
+      <td>{{record.fcast}}</td>
+      <td>{{record.prior}}</td>
+      <td>{{record.rev}}</td>
+      <td>{{record.desv}}</td>
+      <td>{{record.direction}}</td>
+      <td>{{record.strong}}</td>
+      <td>{{record.success}}</td>
+    </tr>
+  </tbody>
+</table>

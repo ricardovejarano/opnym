@@ -18,6 +18,7 @@ export class NewsSelectedComponent implements OnInit {
   singleNews: NewsIntro = new NewsIntro();
   news: News[] = [];
   codeNews = '';
+  impact = '';
 
   constructor(public location: Location, public spinner: NgxSpinnerService,
     public newsService: NewsService) {
@@ -52,6 +53,43 @@ export class NewsSelectedComponent implements OnInit {
       this.newsRegister.desv = this.newsRegister.actual - this.newsRegister.prior;
     }
     this.newsRegister.desv = Number(this.newsRegister.desv.toFixed(2));
+    this.getSuccess();
+  }
+
+  getSuccess() {
+    let directRelation = false;
+
+    if (this.newsRegister.desv > 0 && this.newsRegister.direction === 'alcista') {
+      directRelation = true;
+    } else if (this.newsRegister.desv < 0 && this.newsRegister.direction === 'bajista') {
+      directRelation = true;
+    } else if (this.newsRegister.desv === 0) {
+      this.newsRegister.success = 'no_trade';
+    } else {
+      directRelation = false;
+    }
+
+    if (this.newsRegister.success !== 'no_trade') {
+      switch (directRelation) {
+        case true: {
+          if (this.singleNews.isDirect) {
+            this.newsRegister.success = 'exito';
+          } else {
+            this.newsRegister.success = 'fallo';
+          }
+          break;
+        }
+        case false: {
+          if (this.singleNews.isDirect) {
+            this.newsRegister.success = 'fallo';
+          } else {
+            this.newsRegister.success = 'exito';
+          }
+          break;
+        }
+      }
+    }
+    // window.alert('Resultado de la noticia: ' + this.newsRegister.success);
     this.addRegister();
   }
 
@@ -64,6 +102,7 @@ export class NewsSelectedComponent implements OnInit {
         this.newsRegister = new News();
       }, err => {
         this.spinner.hide();
+        this.newsRegister = new News();
         M.toast({ html: 'Error al crear noticia', classes: 'red darken-4 rounded' });
         console.log('Error', err);
       });
@@ -77,6 +116,11 @@ export class NewsSelectedComponent implements OnInit {
         } else {
           this.singleNews = new NewsIntro();
           this.singleNews = doc.data();
+          if (this.singleNews.isDirect) {
+            this.impact = 'Directo';
+          } else {
+            this.impact = 'Inverso';
+          }
           this.spinner.hide();
           // console.log('Información de la noticia', this.singleNews);
         }

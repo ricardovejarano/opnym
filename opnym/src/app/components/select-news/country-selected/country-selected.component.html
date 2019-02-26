@@ -41,7 +41,8 @@
 
         <div class="col s9 align-center center" *ngIf="newsRegistred.length != 0" style="padding-left: 60px">
           <div class="collection">
-            <a *ngFor="let news of newsRegistred" (click)="goToSingleNews(news.codeNews)" class="collection-item">{{news.name}}</a>
+            <a *ngFor="let news of newsRegistred" (click)="goToSingleNews(news.codeNews)"
+              class="collection-item">{{news.name}}</a>
           </div>
         </div>
       </div>
@@ -61,6 +62,15 @@
           <input id="icon_prefix" type="text" [(ngModel)]="news.name" name="nameNews" #nameNews="ngModel" required
             class="validate">
           <label id="placeh" for="icon_prefix">Nombre de noticia</label>
+        </div>
+
+
+        <div class="input-field col s2">
+          <select #isDirect="ngModel" id="isDirect" [(ngModel)]="news.isDirect" name="isDirect" required>
+            <option value="" disabled selected>Impacto</option>
+            <option value="true">Directo</option>
+            <option value="false">Inverso</option>
+          </select>
         </div>
       </div>
     </form>

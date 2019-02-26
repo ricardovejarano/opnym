@@ -9,6 +9,7 @@ export class News {
         desv = null,
         direction = '',
         strong= null,
+        success = '',
         annotation = ''
     ) {
         this.$key = $key;
@@ -21,6 +22,7 @@ export class News {
         this.desv = desv;
         this.direction = direction;
         this.strong = strong;
+        this.success = success;
         this.annotation = annotation;
     }
     $key?: string;
@@ -33,5 +35,6 @@ export class News {
     desv?: number;
     direction?: string;
     strong?: number;
+    success?: string;
     annotation?: string;
 }
