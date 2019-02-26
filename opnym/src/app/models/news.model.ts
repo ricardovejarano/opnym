@@ -2,11 +2,14 @@ export class News {
     constructor($key = '',
         dateNews = '',
         hourNews = '',
-        actual = 0,
-        fcast = 0,
-        rev = 0,
-        prior = 0,
-        desv = 0,
+        actual = null,
+        fcast = null,
+        rev = null,
+        prior = null,
+        desv = null,
+        direction = '',
+        strong= null,
+        annotation = ''
     ) {
         this.$key = $key;
         this.dateNews = dateNews;
@@ -16,6 +19,9 @@ export class News {
         this.rev = rev;
         this.prior = prior;
         this.desv = desv;
+        this.direction = direction;
+        this.strong = strong;
+        this.annotation = annotation;
     }
     $key?: string;
     dateNews?: string;
@@ -25,4 +31,7 @@ export class News {
     rev?: number;
     prior?: number;
     desv?: number;
+    direction?: string;
+    strong?: number;
+    annotation?: string;
 }

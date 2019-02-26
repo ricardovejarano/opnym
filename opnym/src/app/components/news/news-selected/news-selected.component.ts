@@ -14,6 +14,7 @@ declare var M: any;
 })
 export class NewsSelectedComponent implements OnInit {
 
+  newsRegister: News = new News();
   singleNews: NewsIntro = new NewsIntro();
   news: News[] = [];
   codeNews = '';
@@ -21,6 +22,7 @@ export class NewsSelectedComponent implements OnInit {
   constructor(public location: Location, public spinner: NgxSpinnerService, public newsService: NewsService) {
     this.initModal();
     this.initTooltip();
+    this.initDatePicker();
     this.codeNews = this.getURIPath();
   }
 
@@ -51,6 +53,12 @@ export class NewsSelectedComponent implements OnInit {
 
   getURIPath() {
     return this.location.path().split('/')[2];
+  }
+
+  initDatePicker() {
+    jQuery(document).ready(function () {
+      jQuery('.datepicker').datepicker();
+    });
   }
 
   initModal() {

@@ -11,8 +11,7 @@
         <h3 class="header center teal-text text-lighten-2">{{singleNews.name}}</h3>
         <h5 class="header col s12 light">{{singleNews.countryName}}</h5>
         <div class="align-center center">
-          <a id="addRegister" class="waves-effect waves-light btn modal-trigger"
-         href="#modal1"> <i
+          <a id="addRegister" class="waves-effect waves-light btn modal-trigger" href="#modal1"> <i
               class="material-icons prefix">add</i></a>
         </div>
       </div>
@@ -26,25 +25,124 @@
 <!--MODAL TO CREATE NEWS-->
 <div id="modal1" class="modal">
   <div class="modal-content center-align">
-    <h4>Agregar dato</h4>
-    <form (ngSubmit)="addRegister()" #createRegisterForm="ngForm">
-      <div class="row center">
-        <div class="input-field col s6 offset-s3">
-          <i class="material-icons prefix">library_books</i>
-          <input id="icon_prefix" type="text" [(ngModel)]="singleNews.dateNews" name="dateNews" #dateNews="ngModel"
-            required class="validate">
-          <label id="placeh" for="icon_prefix">Hora de la noticia</label>
-        </div>
-      </div>
-    </form>
-  </div>
+    <h5>Agregar registro</h5>
 
-  <div class="center-align">
-    <div class="row center">
-      <button id="btnCreate" [disabled]="!createRegisterForm.form.valid"
-        class="waves-effect waves-light btn modal-trigger" href="#modal1" (click)="createNews()">Crear registro</button>
-      <button id="btnCancel" type="button" class="btn modal-trigger red" href="#modal1"
-        (click)="closeModal()">Cancelar</button>
+    <div class="row">
+      <form class="col s12" (ngSubmit)="addRegister()" #createRegisterForm="ngForm">
+        <div class="row">
+
+          <div class="input-field col s6">
+            <input id="first_name" type="date" class="validate" [(ngModel)]="newsRegister.dateNews" name="dateNews"
+              #dateNews="ngModel">
+            <label for="first_name">Fecha</label>
+          </div>
+
+          <div class="input-field col s6">
+            <input id="last_name" type="time" class="validate" [(ngModel)]="newsRegister.hourNews" name="hourNews"
+              #hourNews="ngModel">
+            <label for="last_name">Hora</label>
+          </div>
+
+
+          <div class="input-field col s2">
+            <input id="act" type="number" step="0.01" class="validate" [(ngModel)]="newsRegister.actual" name="actual"
+              #actual="ngModel">
+            <label for="act">Act</label>
+          </div>
+
+
+          <div class="input-field col s2">
+            <input id="fcast" type="number" step="0.01" class="validate" [(ngModel)]="newsRegister.fcast" name="fcast"
+              #fcast="ngModel">
+            <label for="fcast">F'cast</label>
+          </div>
+
+
+          <div class="input-field col s2">
+            <input id="prior" type="number" step="0.01" class="validate" [(ngModel)]="newsRegister.prior" name="prior"
+              #prior="ngModel">
+            <label for="prior">Prior</label>
+          </div>
+
+          <div class="input-field col s2">
+            <input id="rev" type="number" step="0.01" class="validate" [(ngModel)]="newsRegister.rev" name="rev"
+              #rev="ngModel">
+            <label for="rev">Rev</label>
+          </div>
+
+          <div class="input-field col s2">
+            <input id="direction" type="text" class="validate" [(ngModel)]="newsRegister.direction" name="direction"
+              #direction="ngModel">
+            <label for="direction">Dirección</label>
+          </div>
+
+          <div class="input-field col s2">
+            <input id="strong" type="number" class="validate" [(ngModel)]="newsRegister.strong" name="strong"
+              #strong="ngModel">
+            <label for="strong">Fuerza</label>
+          </div>
+
+          <div class="input-field col s12">
+            <input id="annotation" type="text" class="validate" [(ngModel)]="newsRegister.annotation" name="annotation"
+              #annotation="ngModel">
+            <label for="annotation">Comentario</label>
+          </div>
+
+          <div class="center-align">
+            <div class="row center">
+              <button id="btnCreate" [disabled]="!createRegisterForm.form.valid"
+                class="waves-effect waves-light btn modal-trigger" href="#modal1" (click)="createNews()">Crear
+                registro</button>
+              <button id="btnCancel" type="button" class="btn modal-trigger red" href="#modal1"
+                (click)="closeModal()">Cancelar</button>
+            </div>
+          </div>
+
+        </div>
+      </form>
     </div>
   </div>
 </div>
+<!--
+    <form (ngSubmit)="addRegister()" #createRegisterForm="ngForm">
+      <div class="row center">
+
+        <div class="input-field col s6">
+          <i class="material-icons prefix">library_books</i>
+          <input id="icon_prefix" type="date" [(ngModel)]="singleNews.dateNews" name="dateNews" #dateNews="ngModel"
+            required class="validate">
+        </div>
+
+        <div class="input-field col s6">
+          <i class="material-icons prefix">library_books</i>
+          <input id="icon_prefix2" type="time" [(ngModel)]="singleNews.hourNews" name="hourNews" #hourNews="ngModel"
+            required class="validate">
+        </div>
+
+        <div class="input-field col s3">
+          <input id="icon_prefix3" type="number" step="0.01" [(ngModel)]="singleNews.actual" name="actual"
+            #actual="ngModel" required class="validate">
+          <label id="placeh3" for="icon_prefix3">Actual</label>
+        </div>
+
+        <div class="input-field col s3">
+          <input id="icon_prefix" type="number" step="0.01" [(ngModel)]="singleNews.fcast" name="fcast" #fcast="ngModel"
+            required class="validate">
+          <label id="placeh4" for="icon_prefix4">F'cast</label>
+        </div>
+
+        <div class="input-field col s3">
+          <input id="icon_prefix" type="number" step="0.01" [(ngModel)]="singleNews.rev" name="rev" #rev="ngModel"
+            required class="validate">
+          <label id="placeh5" for="icon_prefix5">Revisado</label>
+        </div>
+
+        <div class="input-field col s3">
+          <input id="icon_prefix" type="number" step="0.01" [(ngModel)]="singleNews.strong" name="strong"
+            #strong="ngModel" required class="validate">
+          <label id="place6" for="icon_prefix6">Fuerza</label>
+        </div>
+
+      </div>
+    </form>
+-->
