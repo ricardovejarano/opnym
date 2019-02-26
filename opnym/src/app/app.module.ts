@@ -27,6 +27,7 @@ import { CountrySelectedComponent } from './components/select-news/country-selec
 import { NewsService } from './services/news.service';
 import { NewsComponent } from './components/news/news.component';
 import { NewsSelectedComponent } from './components/news/news-selected/news-selected.component';
+import { TableComponent } from './components/news/news-selected/components/table/table.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { NewsSelectedComponent } from './components/news/news-selected/news-sele
     CountrySelectedComponent,
     NewsComponent,
     NewsSelectedComponent,
+    TableComponent,
   ],
   imports: [
     BrowserModule,
