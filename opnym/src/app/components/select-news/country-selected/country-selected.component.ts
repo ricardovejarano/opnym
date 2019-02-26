@@ -46,7 +46,7 @@ export class CountrySelectedComponent implements OnInit {
     this.news.countryName = this.country.name;
     this.newsService.createNews(this.news)
       .then(res => {
-        console.log('Succes data pushed from new News');
+        // console.log('Succes data pushed from new News');
         M.toast({ html: 'Noticia creada', classes: 'teal darken-4 rounded' });
         this.closeModal();
         this.spinner.hide();
@@ -61,7 +61,7 @@ export class CountrySelectedComponent implements OnInit {
   getRegistredNews() {
     this.newsService.getNewsRegister(this.codeCountrySelected)
       .subscribe(res => {
-        console.log(res);
+        // console.log(res);
         this.newsRegistred = res;
       }, err => {
         console.log('Se produjo un error', err);
@@ -95,7 +95,7 @@ export class CountrySelectedComponent implements OnInit {
           this.flagChage = true;
           setTimeout(() => {
             this.flagChage = false;
-            console.log('PAIS SELECCIONADO', this.country);
+            // console.log('PAIS SELECCIONADO', this.country);
             this.spinner.hide();
             this.getRegistredNews();
           }, 100);
@@ -111,7 +111,7 @@ export class CountrySelectedComponent implements OnInit {
     setTimeout(() => {
       this.codeCountrySelected = this.getURIPath();
     }, 200);
-    console.log('Pais cambia a : ', this.codeCountrySelected);
+    // console.log('Pais cambia a : ', this.codeCountrySelected);
     setTimeout(() => {
       this.getCountrySelected();
     }, 300);

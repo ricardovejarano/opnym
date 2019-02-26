@@ -1,14 +1,23 @@
 <ngx-spinner bdColor="rgba(51,51,51,0.8)" size="medium" color="#fff" type="ball-atom">
   <p style="font-size: 20px; color: white">Cargando...</p>
 </ngx-spinner>
+
 <body>
 
-  <div class="container" style="padding-top: 60px">
-  
-    <div class="align-center center">
-      <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Agregar recurso</a>
+  <div class="container">
+
+    <div class="section">
+      <div class="row center">
+        <h3 class="header center teal-text text-lighten-2">{{singleNews.name}}</h3>
+        <h5 class="header col s12 light">{{singleNews.countryName}}</h5>
+        <div class="align-center center">
+          <a id="addRegister" class="waves-effect waves-light btn modal-trigger"
+         href="#modal1"> <i
+              class="material-icons prefix">add</i></a>
+        </div>
+      </div>
     </div>
-  
+
   </div>
 
 </body>
@@ -22,8 +31,8 @@
       <div class="row center">
         <div class="input-field col s6 offset-s3">
           <i class="material-icons prefix">library_books</i>
-          <input id="icon_prefix" type="text" [(ngModel)]="singleNews.dateNews" name="dateNews" #dateNews="ngModel" required
-            class="validate">
+          <input id="icon_prefix" type="text" [(ngModel)]="singleNews.dateNews" name="dateNews" #dateNews="ngModel"
+            required class="validate">
           <label id="placeh" for="icon_prefix">Hora de la noticia</label>
         </div>
       </div>
@@ -32,8 +41,8 @@
 
   <div class="center-align">
     <div class="row center">
-      <button id="btnCreate" [disabled]="!createRegisterForm.form.valid" class="waves-effect waves-light btn modal-trigger"
-        href="#modal1" (click)="createNews()">Crear registro</button>
+      <button id="btnCreate" [disabled]="!createRegisterForm.form.valid"
+        class="waves-effect waves-light btn modal-trigger" href="#modal1" (click)="createNews()">Crear registro</button>
       <button id="btnCancel" type="button" class="btn modal-trigger red" href="#modal1"
         (click)="closeModal()">Cancelar</button>
     </div>
