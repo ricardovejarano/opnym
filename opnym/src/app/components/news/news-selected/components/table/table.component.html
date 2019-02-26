@@ -16,7 +16,7 @@
 
   <tbody>
     <tr *ngFor="let record of recordsNews">
-      <td>{{record.dateNews | date: 'MM/dd/y'}}</td>
+      <td>{{record.dateNews | date: 'fullDate'}}</td>
       <td>{{record.hourNews}}</td>
       <td>{{record.actual}}</td>
       <td>{{record.fcast}}</td>

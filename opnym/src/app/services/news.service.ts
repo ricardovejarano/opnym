@@ -39,7 +39,8 @@ export class NewsService {
   }
 
   getNewsRecords(codeNews) {
-    return this.db.collection('news').doc(codeNews).collection('register').valueChanges();
+    return this.db.collection('news').doc(codeNews).collection('register', ref =>
+      ref.orderBy('dateNews')).valueChanges();
   }
 
   getNewsRegister(codeCountry) {

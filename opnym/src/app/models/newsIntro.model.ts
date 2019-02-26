@@ -4,7 +4,7 @@ export class NewsIntro {
         codeNews = '',
         countryCode = '',
         countryName = '',
-        isDirect = false
+        isDirect = ''
     ) {
         this.$key = $key;
         this.name = name;
@@ -18,5 +18,5 @@ export class NewsIntro {
     codeNews?: string;
     countryCode?: string;
     countryName?: string;
-    isDirect?: boolean;
+    isDirect?: string;
 }

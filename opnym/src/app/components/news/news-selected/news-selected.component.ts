@@ -72,7 +72,7 @@ export class NewsSelectedComponent implements OnInit {
     if (this.newsRegister.success !== 'no_trade') {
       switch (directRelation) {
         case true: {
-          if (this.singleNews.isDirect) {
+          if (this.singleNews.isDirect === 'true') {
             this.newsRegister.success = 'exito';
           } else {
             this.newsRegister.success = 'fallo';
@@ -80,7 +80,7 @@ export class NewsSelectedComponent implements OnInit {
           break;
         }
         case false: {
-          if (this.singleNews.isDirect) {
+          if (this.singleNews.isDirect === 'true') {
             this.newsRegister.success = 'fallo';
           } else {
             this.newsRegister.success = 'exito';
@@ -116,7 +116,7 @@ export class NewsSelectedComponent implements OnInit {
         } else {
           this.singleNews = new NewsIntro();
           this.singleNews = doc.data();
-          if (this.singleNews.isDirect) {
+          if (this.singleNews.isDirect === 'true') {
             this.impact = 'Directo';
           } else {
             this.impact = 'Inverso';
