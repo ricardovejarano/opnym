@@ -43,6 +43,13 @@ export class NewsService {
       ref.orderBy('dateNews')).valueChanges();
   }
 
+
+  getNewsFiltredRecords(codeNews, date) {
+    return this.db.collection('news').doc(codeNews).collection('register', ref =>
+      ref.where('dateNews', '>', date).orderBy('dateNews')).valueChanges();
+  }
+
+
   getNewsRegister(codeCountry) {
     return this.db.collection(`news`, ref =>
       ref.where('countryCode', '==', codeCountry)).valueChanges();

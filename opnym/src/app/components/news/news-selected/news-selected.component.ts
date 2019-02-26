@@ -17,6 +17,8 @@ export class NewsSelectedComponent implements OnInit {
   newsRegister: News = new News();
   singleNews: NewsIntro = new NewsIntro();
   news: News[] = [];
+
+  yearFilter = '';
   codeNews = '';
   impact = '';
 
@@ -132,6 +134,8 @@ export class NewsSelectedComponent implements OnInit {
   getURIPath() {
     return this.location.path().split('/')[2];
   }
+
+
 
   initSelector() {
     jQuery(document).ready(function () {
