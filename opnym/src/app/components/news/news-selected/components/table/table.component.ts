@@ -27,12 +27,12 @@ export class TableComponent implements OnInit {
     this.recordsNews = [];
     const codeFiltredNews = year + '-01-01';
     this.newsService.getNewsFiltredRecords(this.codeNews, codeFiltredNews)
-    .subscribe(res => {
-      this.recordsNews = res;
-      console.log(this.recordsNews);
-    }, err => {
-      console.log('Error trayendo datos', err);
-    });
+      .subscribe(res => {
+        this.recordsNews = res;
+        console.log(this.recordsNews);
+      }, err => {
+        console.log('Error trayendo datos', err);
+      });
   }
 
   getRecordsNews() {
@@ -43,6 +43,10 @@ export class TableComponent implements OnInit {
       }, err => {
         console.log('Error trayendo datos', err);
       });
+  }
+
+  rowClick(event: News) {
+    window.alert(event.dateNews);
   }
 
   getURIPath() {

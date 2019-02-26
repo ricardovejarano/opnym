@@ -22,7 +22,7 @@
   </thead>
 
   <tbody>
-    <tr *ngFor="let record of recordsNews">
+    <tr *ngFor="let record of recordsNews" (click)="rowClick(record)">
       <td>{{record.dateNews | date: 'fullDate'}}</td>
       <td>{{record.hourNews}}</td>
       <td>{{record.actual}}</td>
