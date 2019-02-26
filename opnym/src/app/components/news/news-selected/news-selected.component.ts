@@ -19,16 +19,54 @@ export class NewsSelectedComponent implements OnInit {
   news: News[] = [];
   codeNews = '';
 
-  constructor(public location: Location, public spinner: NgxSpinnerService, public newsService: NewsService) {
+  constructor(public location: Location, public spinner: NgxSpinnerService,
+    public newsService: NewsService) {
     this.initModal();
     this.initTooltip();
     this.initDatePicker();
+    this.initSelector();
     this.codeNews = this.getURIPath();
   }
 
   ngOnInit() {
     this.spinner.show();
     this.getGeneralNewsInfo();
+  }
+
+  evaluateRegister() {
+    if (this.newsRegister.fcast === null && this.newsRegister.prior === null && this.newsRegister
+      .rev === null) {
+      M.toast({ html: 'Fcast, Prior y Rev están vacíos', classes: 'red darken-4 rounded' });
+    } else {
+      this.spinner.show();
+      this.getDesviation();
+    }
+  }
+
+  getDesviation() {
+    if (this.newsRegister.fcast !== null) {
+      this.newsRegister.desv = this.newsRegister.actual - this.newsRegister.fcast;
+    } else if (this.newsRegister.rev !== null) {
+      this.newsRegister.desv = this.newsRegister.actual - this.newsRegister.rev;
+    } else if (this.newsRegister.prior !== null) {
+      this.newsRegister.desv = this.newsRegister.actual - this.newsRegister.prior;
+    }
+    this.newsRegister.desv = Number(this.newsRegister.desv.toFixed(2));
+    this.addRegister();
+  }
+
+  addRegister() {
+    console.log('Variable newsRegister', this.newsRegister);
+    this.newsService.createNewRegister(this.codeNews, this.newsRegister)
+      .then(res => {
+        this.spinner.hide();
+        M.toast({ html: 'Noticia creada', classes: 'teal darken-4 rounded' });
+        this.newsRegister = new News();
+      }, err => {
+        this.spinner.hide();
+        M.toast({ html: 'Error al crear noticia', classes: 'red darken-4 rounded' });
+        console.log('Error', err);
+      });
   }
 
   getGeneralNewsInfo() {
@@ -47,12 +85,14 @@ export class NewsSelectedComponent implements OnInit {
       });
   }
 
-  addRegister() {
-    console.log('Se agrega registro');
-  }
-
   getURIPath() {
     return this.location.path().split('/')[2];
+  }
+
+  initSelector() {
+    jQuery(document).ready(function () {
+      jQuery('select').formSelect();
+    });
   }
 
   initDatePicker() {
