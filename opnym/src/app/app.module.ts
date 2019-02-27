@@ -28,6 +28,10 @@ import { NewsService } from './services/news.service';
 import { NewsComponent } from './components/news/news.component';
 import { NewsSelectedComponent } from './components/news/news-selected/news-selected.component';
 import { TableComponent } from './components/news/news-selected/components/table/table.component';
+import 'hammerjs';
+
+// =======APP GALARY ==============
+import { NgxGalleryModule } from 'ngx-gallery';
 
 
 @NgModule({
@@ -54,7 +58,8 @@ import { TableComponent } from './components/news/news-selected/components/table
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     AngularFireStorageModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    NgxGalleryModule
   ],
   providers: [MainService,
     NewsService, { provide: FirestoreSettingsToken, useValue: {} }],

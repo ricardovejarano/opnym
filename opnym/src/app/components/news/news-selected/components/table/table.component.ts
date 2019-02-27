@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NewsService } from 'src/app/services/news.service';
 import { News } from 'src/app/models/news.model';
 import { Location } from '@angular/common';
+import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
 declare var jQuery: any;
 declare var M: any;
 
@@ -11,6 +12,10 @@ declare var M: any;
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
+
+  // GALERRY
+  galleryOptions: NgxGalleryOptions[];
+  galleryImages: NgxGalleryImage[];
 
   editableNews: News = new News();
   recordsNews: News[] = [];
@@ -27,6 +32,7 @@ export class TableComponent implements OnInit {
 
   ngOnInit() {
     this.getRecordsNews();
+    this.initGalery();
   }
 
   onChangeSelect(year) {
@@ -91,6 +97,50 @@ export class TableComponent implements OnInit {
     jQuery(document).ready(function () {
       jQuery('.modal').modal('close');
     });
+  }
+
+  initGalery() {
+    this.galleryOptions = [
+      {
+          width: '800px',
+          height: '600px',
+          thumbnailsColumns: 3,
+          imageAnimation: NgxGalleryAnimation.Slide
+      },
+      // max-width 800
+      {
+          breakpoint: 800,
+          width: '100%',
+          height: '600px',
+          imagePercent: 80,
+          thumbnailsPercent: 20,
+          thumbnailsMargin: 20,
+          thumbnailMargin: 20
+      },
+      // max-width 400
+      {
+          breakpoint: 400,
+          preview: false
+      }
+  ];
+
+  this.galleryImages = [
+      {
+          small: 'https://lorempixel.com/250/250/nature/1',
+          medium: 'https://lorempixel.com/250/250/nature/1',
+          big: 'https://lorempixel.com/250/250/nature/1'
+      },
+      {
+          small: 'https://lorempixel.com/250/250/nature/2',
+          medium: 'https://lorempixel.com/250/250/nature/2',
+          big: 'https://lorempixel.com/250/250/nature/2'
+      },
+      {
+          small: 'https://lorempixel.com/250/250/nature/3',
+          medium: 'https://lorempixel.com/250/250/nature/3',
+          big: 'https://lorempixel.com/250/250/nature/3'
+      }
+  ];
   }
 
 }
