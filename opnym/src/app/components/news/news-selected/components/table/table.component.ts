@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NewsService } from 'src/app/services/news.service';
 import { News } from 'src/app/models/news.model';
 import { Location } from '@angular/common';
+declare var jQuery: any;
+declare var M: any;
 
 @Component({
   selector: 'app-table',
@@ -10,6 +12,7 @@ import { Location } from '@angular/common';
 })
 export class TableComponent implements OnInit {
 
+  editableNews: News = new News();
   recordsNews: News[] = [];
   codeNews = '';
   arrayYearsFilter = [];
@@ -17,6 +20,7 @@ export class TableComponent implements OnInit {
   constructor(public newsService: NewsService, public location: Location) {
     this.codeNews = this.getURIPath();
     this.initArrayFilter();
+    this.initModal();
   }
 
   ngOnInit() {
@@ -46,7 +50,8 @@ export class TableComponent implements OnInit {
   }
 
   rowClick(event: News) {
-    window.alert(event.dateNews);
+    this.editableNews = event;
+    // window.alert(event.dateNews);
   }
 
   getURIPath() {
@@ -57,6 +62,18 @@ export class TableComponent implements OnInit {
     for (let x = 2010; x < 2021; x++) {
       this.arrayYearsFilter.push(x);
     }
+  }
+
+  initModal() {
+    jQuery(document).ready(function () {
+      jQuery('.modal').modal();
+    });
+  }
+
+  closeModal() {
+    jQuery(document).ready(function () {
+      jQuery('.modal').modal('close');
+    });
   }
 
 }
