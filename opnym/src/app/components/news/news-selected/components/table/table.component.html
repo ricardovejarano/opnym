@@ -34,7 +34,14 @@
       <td>{{record.direction}}</td>
       <td>{{record.strong}}</td>
       <td>{{record.success}}</td>
-      <td><a id="addRegister" class="waves-effect waves-light btn modal-trigger"  href="#modal2">Dt</a></td>
+      <td>
+        <a id="addRegister" class="waves-effect waves-light btn modal-trigger" href="#modal2">
+          <i class="material-icons prefix">note</i>
+        </a>
+        <a id="addRegister" class="waves-effect waves-light red btn modal-trigger" href="#modal-edit">
+          <i class="material-icons prefix">edit</i>
+        </a>
+      </td>
     </tr>
   </tbody>
 </table>
@@ -42,10 +49,23 @@
 
 <!--MODAL TO CREATE NEWS-->
 <div id="modal2" class="modal">
-    <div class="modal-content center-align">
-      <h5>Agregar registro</h5>
-      <div class="row">
-        <h1>{{editableNews.dateNews}}</h1>
-      </div>
+  <div class="modal-content center-align">
+    <h5>Agregar registro</h5>
+    <div class="row">
+      <h1>{{editableNews.dateNews}}</h1>
+      <h3>{{editableNews.annotation}}</h3>
     </div>
   </div>
+</div>
+
+
+<!--MODAL TO CREATE NEWS-->
+<div id="modal-edit" class="modal">
+  <div class="modal-content center-align">
+    <h5>Editar noticia</h5>
+    <div class="row">
+      <h1>{{editableNews.dateNews}}</h1>
+      <h3>{{editableNews.annotation}}</h3>
+    </div>
+  </div>
+</div>
