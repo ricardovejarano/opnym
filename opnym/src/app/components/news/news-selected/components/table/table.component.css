@@ -1,0 +1,29 @@
+.modal-close {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	height: 24px;
+  width: 1.5rem;
+	border-radius: 50%;
+	cursor: pointer;
+	background-color: rgba(0,0,0,0.42);
+	color: #FFFFF0;
+  text-align: center;
+  line-height: 1.6rem;
+}
+
+.modal.bottom-sheet {
+    min-height: 400px;
+}
+
+table {
+  table-layout: fixed ;
+  width: 100% ;
+}
+td {
+  width: 25% ;
+}
+
+div.collapsible-header{
+	padding: 0px;
+}

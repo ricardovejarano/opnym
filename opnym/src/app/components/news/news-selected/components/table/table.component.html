@@ -5,6 +5,71 @@
   </select>
 </div>
 
+<div style="margin-top: 80px">
+  <ul class="collapsible popout">
+    <li>
+      <div class="collapsible-header">
+        <table class="centered">
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Hora</th>
+              <th>Act</th>
+              <th>F'cast</th>
+              <th>Prior</th>
+              <th>Rev</th>
+              <th>Desv</th>
+              <th>Dirección</th>
+              <th>Fuerza</th>
+              <th>Resultado</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </li>
+    <li *ngFor="let record of recordsNews">
+      <div class="collapsible-header">
+        <table class="centered">
+          <tbody>
+            <tr>
+              <td>{{record.dateNews | date: 'fullDate'}}</td>
+              <td>{{record.hourNews}}</td>
+              <td>{{record.actual}}</td>
+              <td>{{record.fcast}}</td>
+              <td>{{record.prior}}</td>
+              <td>{{record.rev}}</td>
+              <td>{{record.desv}}</td>
+              <td>{{record.direction}}</td>
+              <td>{{record.strong}}</td>
+              <td>{{record.success}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="collapsible-body">
+        <h2>img</h2>
+      </div>
+    </li>
+  </ul>
+</div>
+
+
+
+
+
+<!--MODAL TO CREATE NEWS-->
+<div id="modal-edit" class="modal">
+  <div class="modal-content center-align">
+    <h5>Editar noticia</h5>
+    <div class="row">
+      <h1>{{editableNews.dateNews}}</h1>
+      <h3>{{editableNews.annotation}}</h3>
+    </div>
+  </div>
+</div>
+
+
+<!--
 <table class="responsive-table centered highlight">
   <thead>
     <tr>
@@ -35,7 +100,7 @@
       <td>{{record.strong}}</td>
       <td>{{record.success}}</td>
       <td>
-        <a id="addRegister" class="waves-effect waves-light btn modal-trigger" href="#modal2">
+        <a id="addRegister" class="waves-effect waves-light btn modal-trigger" href="#modal-1">
           <i class="material-icons prefix">note</i>
         </a>
         <a id="addRegister" class="waves-effect waves-light red btn modal-trigger" href="#modal-edit">
@@ -45,27 +110,4 @@
     </tr>
   </tbody>
 </table>
-
-
-<!--MODAL TO CREATE NEWS-->
-<div id="modal2" class="modal">
-  <div class="modal-content center-align">
-    <h5>Agregar registro</h5>
-    <div class="row">
-      <h1>{{editableNews.dateNews}}</h1>
-      <h3>{{editableNews.annotation}}</h3>
-    </div>
-  </div>
-</div>
-
-
-<!--MODAL TO CREATE NEWS-->
-<div id="modal-edit" class="modal">
-  <div class="modal-content center-align">
-    <h5>Editar noticia</h5>
-    <div class="row">
-      <h1>{{editableNews.dateNews}}</h1>
-      <h3>{{editableNews.annotation}}</h3>
-    </div>
-  </div>
-</div>
+-->

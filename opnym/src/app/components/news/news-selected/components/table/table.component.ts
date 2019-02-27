@@ -21,6 +21,8 @@ export class TableComponent implements OnInit {
     this.codeNews = this.getURIPath();
     this.initArrayFilter();
     this.initModal();
+    this.initCarousel();
+    this.initCollapsable();
   }
 
   ngOnInit() {
@@ -67,6 +69,21 @@ export class TableComponent implements OnInit {
   initModal() {
     jQuery(document).ready(function () {
       jQuery('.modal').modal();
+
+    });
+  }
+
+  initCarousel() {
+    jQuery(document).ready(function () {
+      jQuery('.carousel').carousel();
+    });
+
+  }
+
+
+  initCollapsable() {
+    jQuery(document).ready(function () {
+      jQuery('.collapsible').collapsible();
     });
   }
 
